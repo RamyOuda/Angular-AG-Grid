@@ -1,0 +1,13 @@
+@use "/src/variables" as *;
+
+:host {
+  display: block;
+  height: 100vh;
+  background-color: $dark-cyan;
+  color: $white;
+
+  h1 {
+    text-align: center;
+    padding-top: 5rem;
+  }
+}
