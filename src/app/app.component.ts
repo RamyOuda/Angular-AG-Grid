@@ -15,21 +15,23 @@ interface Vehicle {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  dataUrl: string = 'https://www.ag-grid.com/example-assets/row-data.json';
+  rowData$!: Observable<Vehicle[]>;
+
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.rowData$ = this.http.get<Vehicle[]>(
-      'https://www.ag-grid.com/example-assets/row-data.json'
-    );
+    this.rowData$ = this.http.get<Vehicle[]>(this.dataUrl);
   }
 
-  // row data
-  rowData$!: Observable<Vehicle[]>;
+  defaultColDef: ColDef = {
+    sortable: true,
+    filter: true,
+  };
 
-  // column definitions
   colDefs: ColDef[] = [
-    { field: 'make', sortable: true, filter: true },
-    { field: 'model', sortable: true, filter: true },
-    { field: 'price', sortable: true, filter: true },
+    { field: 'make' },
+    { field: 'model' },
+    { field: 'price' },
   ];
 }
